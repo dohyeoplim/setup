@@ -14,3 +14,4 @@ Installs
 - neovim
 - uv
 - tailscale
+- claude code

@@ -37,6 +37,11 @@ install_tailscale() {
   tailscale status >/dev/null 2>&1 || sudo tailscale up
 }
 
+install_claude_code() {
+  command -v claude >/dev/null && return
+  curl -fsSL https://claude.ai/install.sh | bash
+}
+
 install_packages() {
   sudo apt-get update -qq
   sudo apt-get install -y git git-lfs tmux curl ripgrep
@@ -44,4 +49,5 @@ install_packages() {
   install_nvim
   install_uv
   install_tailscale
+  install_claude_code
 }
