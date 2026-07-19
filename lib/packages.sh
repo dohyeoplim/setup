@@ -34,7 +34,9 @@ install_uv() {
 
 install_tailscale() {
   command -v tailscale >/dev/null || curl -fsSL https://tailscale.com/install.sh | sh
-  tailscale status >/dev/null 2>&1 || sudo tailscale up
+  tailscale status >/dev/null 2>&1 && return
+  tailscale status 2>&1 | grep -qi "tailscaled" && return
+  sudo tailscale up
 }
 
 install_claude_code() {
